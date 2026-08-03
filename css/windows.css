@@ -1,0 +1,64 @@
+/* =================================================================
+   MERIDIAN OS — Window manager chrome
+   ================================================================= */
+
+#window-layer{ position:absolute; inset:0; pointer-events:none; }
+.win{ pointer-events:auto; }
+
+.win{
+  position:absolute; min-width:300px; min-height:200px;
+  background:var(--ink-900); border:1px solid var(--hairline-strong); border-radius:var(--r-lg);
+  box-shadow:var(--shadow-window); display:flex; flex-direction:column; overflow:hidden;
+  animation:winOpen var(--dur-med) var(--ease-spring);
+}
+.win.closing{ animation:winClose var(--dur-fast) var(--ease-out) forwards; }
+.win.dragging,.win.resizing{ animation:none; }
+.win.maximized{ border-radius:0; border-width:0 0 1px 0; left:0 !important; top:0 !important; width:100% !important; height:100% !important; }
+.win.minimized{ display:none; }
+.win.focused{ box-shadow:0 28px 70px rgba(0,0,0,0.6); border-color:var(--hairline-strong); }
+.win:not(.focused) .winbar{ opacity:.7; }
+
+@keyframes winOpen{ from{ opacity:0; transform:scale(0.96) translateY(10px); } to{ opacity:1; transform:scale(1) translateY(0); } }
+@keyframes winClose{ from{ opacity:1; transform:scale(1); } to{ opacity:0; transform:scale(0.96) translateY(6px); } }
+
+.winbar{
+  height:42px; flex-shrink:0; display:flex; align-items:center; gap:10px; padding:0 6px 0 14px;
+  background:var(--ink-800); border-bottom:1px solid var(--hairline); cursor:default; user-select:none;
+}
+.winbar .glyph{ width:16px; height:16px; color:var(--accent); flex-shrink:0; }
+.winbar .title{ font-size:12.5px; font-weight:600; flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.wincontrols{ display:flex; align-items:center; gap:2px; flex-shrink:0; }
+.wincontrols button{
+  width:30px; height:30px; border-radius:8px; border:none; background:transparent; color:var(--paper-dim);
+  display:flex; align-items:center; justify-content:center; transition:background var(--dur-fast), color var(--dur-fast);
+}
+.wincontrols button:hover{ background:var(--hairline); color:var(--paper); }
+.wincontrols button.close:hover{ background:var(--signal-red); color:#fff; }
+
+.winbody{ flex:1; overflow:hidden; position:relative; display:flex; flex-direction:column; min-height:0; }
+
+.resize-handle{ position:absolute; z-index:2; }
+.rh-n{ top:-3px; left:8px; right:8px; height:6px; cursor:ns-resize; }
+.rh-s{ bottom:-3px; left:8px; right:8px; height:6px; cursor:ns-resize; }
+.rh-e{ right:-3px; top:8px; bottom:8px; width:6px; cursor:ew-resize; }
+.rh-w{ left:-3px; top:8px; bottom:8px; width:6px; cursor:ew-resize; }
+.rh-ne{ top:-4px; right:-4px; width:14px; height:14px; cursor:nesw-resize; }
+.rh-nw{ top:-4px; left:-4px; width:14px; height:14px; cursor:nwse-resize; }
+.rh-se{ bottom:-4px; right:-4px; width:14px; height:14px; cursor:nwse-resize; }
+.rh-sw{ bottom:-4px; left:-4px; width:14px; height:14px; cursor:nesw-resize; }
+
+#snap-ghost{
+  position:absolute; z-index:1; background:var(--accent-soft); border:2px solid var(--accent); border-radius:var(--r-md);
+  pointer-events:none; opacity:0; transition:opacity var(--dur-fast);
+}
+#snap-ghost.visible{ opacity:1; }
+
+.winloading{
+  position:absolute; inset:0; background:var(--ink-900); display:flex; align-items:center; justify-content:center;
+  z-index:5; transition:opacity var(--dur-med); color:var(--paper-faint); font-size:12px; gap:10px;
+}
+.spinner{ width:18px; height:18px; border-radius:50%; border:2px solid var(--hairline-strong); border-top-color:var(--accent); animation:spin .7s linear infinite; }
+
+@media (max-width:760px){
+  .win{ min-width:0; min-height:0; }
+}

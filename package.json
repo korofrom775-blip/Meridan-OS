@@ -1,0 +1,28 @@
+{
+  "name": "meridian-os",
+  "version": "1.0.0",
+  "description": "Meridian OS — a desktop environment that runs entirely in your browser, packaged as an Electron app.",
+  "main": "electron/main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.meridian.os",
+    "productName": "Meridian OS",
+    "files": [
+      "index.html",
+      "css/**/*",
+      "js/**/*",
+      "electron/**/*"
+    ],
+    "directories": {
+      "output": "dist"
+    }
+  }
+}
