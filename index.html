@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Meridian OS</title>
+<meta name="description" content="Meridian OS — a desktop environment that runs entirely in your browser.">
+
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/shell.css">
+<link rel="stylesheet" href="css/windows.css">
+<link rel="stylesheet" href="css/apps.css">
+<link rel="stylesheet" href="css/browser.css">
+</head>
+<body>
+
+<div id="app" data-taskbar="bottom" data-iconsize="medium">
+
+  <!-- BOOT SCREEN (static markup so it paints before any script runs) -->
+  <div id="boot-screen">
+    <div class="meridian-mark">
+      <svg viewBox="0 0 120 120" aria-hidden="true">
+        <circle cx="60" cy="60" r="58" fill="none" stroke="currentColor" stroke-opacity="0.18" stroke-width="1.5"/>
+        <g class="arcs" fill="none" stroke="currentColor" stroke-width="1.5">
+          <ellipse cx="60" cy="60" rx="20" ry="58" stroke-opacity="0.85"/>
+          <ellipse cx="60" cy="60" rx="40" ry="58" stroke-opacity="0.5"/>
+          <ellipse cx="60" cy="60" rx="58" ry="58" stroke-opacity="0.28"/>
+          <line x1="2" y1="60" x2="118" y2="60" stroke-opacity="0.3"/>
+        </g>
+        <circle cx="60" cy="60" r="5" fill="currentColor"/>
+      </svg>
+    </div>
+    <div class="boot-word">MERIDIAN</div>
+    <div class="boot-track"><div class="boot-fill"></div></div>
+  </div>
+
+  <!-- DESKTOP -->
+  <div id="desktop" class="u-hidden">
+    <div id="desktop-icons"></div>
+    <div id="window-layer">
+      <div id="snap-ghost"></div>
+    </div>
+  </div>
+
+  <!-- TASKBAR -->
+  <div id="taskbar-edge-hint"></div>
+  <div id="taskbar" class="u-hidden">
+    <button id="start-btn" title="Start"></button>
+    <div id="task-search">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input type="text" id="task-search-input" placeholder="Search apps">
+    </div>
+    <div id="taskbar-apps"></div>
+    <div id="tray"></div>
+  </div>
+
+  <!-- TOASTS -->
+  <div id="toast-stack"></div>
+
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/windowmanager.js"></script>
+<script src="js/appregistry.js"></script>
+<script src="js/apps/explorer.js"></script>
+<script src="js/apps/simpleapps.js"></script>
+<script src="js/apps/appcreator.js"></script>
+<script src="js/apps/terminal.js"></script>
+<script src="js/apps/settingsapp.js"></script>
+<script src="js/apps/browser.js"></script>
+<script src="js/desktop.js"></script>
+<script src="js/shellui.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
